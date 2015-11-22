@@ -1,5 +1,5 @@
 <package>
-  <name>range-only_msgs</name>
+  <name>rangeonly_msgs</name>
   <version>1.0.0</version>
   <description>
      Generic messages for range-only sensors.

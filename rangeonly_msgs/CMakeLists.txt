@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(range-only_msgs)
+project(rangeonly_msgs)
 
 find_package(catkin REQUIRED
 COMPONENTS

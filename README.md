@@ -1,2 +1,2 @@
-# range-only_driver
+# rangeonly_driver
 ROS stack for range-only sensors. 
