@@ -16,25 +16,13 @@ endif()
 find_package(catkin REQUIRED
 COMPONENTS
     roscpp
-    message_generation
-    std_msgs
-)
-
-add_message_files(
-    DIRECTORY msg
-    FILES
-    P2PRange.msg
-)
-
-generate_messages(DEPENDENCIES
-    std_msgs
+    rangeonly_msgs
 )
 
 catkin_package(
     CATKIN_DEPENDS
         roscpp
-        std_msgs
-        message_runtime
+        rangeonly_msgs
 )
 
 include_directories(include ${catkin_INCLUDE_DIRS})
@@ -43,7 +31,7 @@ add_executable(${PROJECT_NAME}
 		src/main.cpp 
 		src/cntronbase.cpp)
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
-add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(${PROJECT_NAME} rangeonly_msgs_generate_messages_cpp)
 
 install(TARGETS ${PROJECT_NAME}
 #  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}

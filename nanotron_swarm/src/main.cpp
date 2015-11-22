@@ -30,7 +30,8 @@
 **/
 
 #include "nanotron_swarm/cntronbase.h"
-#include "nanotron_swarm/P2PRange.h"
+
+#include <rangeonly_msgs/P2PRange.h>
 
 #include <iostream>
 #include <unistd.h>
@@ -72,7 +73,7 @@ int main(int argc, char** argv) {
 
 	std::string topic = "range";
 	privNode.getParam("topic", topic);
-	ros::Publisher rangePub = n.advertise<nanotron_swarm::P2PRange>(topic,
+	ros::Publisher rangePub = n.advertise<rangeonly_msgs::P2PRange>(topic,
 			1000);
 	ROS_INFO("Range measurements published on %s", rangePub.getTopic().c_str());
 
@@ -152,19 +153,19 @@ void publishRange(CNTronRange& range, ros::Publisher publisher,
 
 	static long sequence = 0;
 
-	nanotron_swarm::P2PRange msg;
+	rangeonly_msgs::P2PRange msg;
 
 	msg.header.stamp = ros::Time::now();
 	msg.header.seq = sequence++;
 	msg.header.frame_id = frameID;
 
-	msg.radiation_type = nanotron_swarm::P2PRange::RADIO; // The type of radiation used by the sensor.
+	msg.radiation_type = rangeonly_msgs::P2PRange::RADIO; // The type of radiation used by the sensor.
 
 	msg.emitter_id = range.emitterId;                 // Unique emitter node ID.
-	msg.emitter_type = nanotron_swarm::P2PRange::BASE; // Type of the emitter range sensor.
+	msg.emitter_type = rangeonly_msgs::P2PRange::BASE; // Type of the emitter range sensor.
 
 	msg.receiver_id = range.beaconId;                // Unique recever node ID.
-	msg.receiver_type = nanotron_swarm::P2PRange::BEACON; // Type of the receiver range sensor.
+	msg.receiver_type = rangeonly_msgs::P2PRange::BEACON; // Type of the receiver range sensor.
 
 	msg.range = (double) range.range;              // Estimated range in meters.
 	msg.variance = 2.25;                       // Variance of range measurement.
